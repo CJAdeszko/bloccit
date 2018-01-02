@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe SponsoredPostsController, type: :controller do
   let(:my_topic) { Topic.create!(name:  RandomData.random_sentence, description: RandomData.random_paragraph) }
-  let(:sponsored_post) { my_topic.sponsored_posts.create!(title: RandomData.random_sentence, body: RandomData.random_paragraph, price: rand(100)) }
+  let(:sponsored_post) { my_topic.sponsored_posts.create!(title: RandomData.random_sentence, body: RandomData.random_paragraph, price: 100) }
 
   describe "GET show" do
     it "returns http success" do
@@ -61,5 +61,43 @@ RSpec.describe SponsoredPostsController, type: :controller do
       expect(sponsored_post_instance.body).to eq sponsored_post.body
     end
   end
+
+
+    describe "PUT update" do
+      it "updates post with expected attributes" do
+        new_title = RandomData.random_sentence
+        new_body = RandomData.random_paragraph
+        new_price = 100
+
+        put :update, params: { topic_id: my_topic.id, id: sponsored_post.id, sponsored_post: {title: new_title, body: new_body, price: new_price } }
+        updated_post = assigns(:sponsored_post)
+        expect(updated_post.id).to eq sponsored_post.id
+        expect(updated_post.title).to eq new_title
+        expect(updated_post.body).to eq new_body
+        expect(updated_post.price).to eq new_price
+      end
+
+      it "redirects to the updated post" do
+        new_title = RandomData.random_sentence
+        new_body = RandomData.random_paragraph
+        new_price = 100
+        put :update, params: { topic_id: my_topic.id, id: sponsored_post.id, sponsored_post: {title: new_title, body: new_body, price: new_price } }
+        expect(response).to redirect_to [my_topic, sponsored_post]
+      end
+    end
+
+
+    describe "DELETE destroy" do
+      it "deletes the post" do
+        delete :destroy, params: { topic_id: my_topic.id, id: sponsored_post.id }
+        count = SponsoredPost.where({id: sponsored_post.id}).size
+        expect(count).to eq 0
+      end
+
+      it "redirects to topic index" do
+        delete :destroy, params: { topic_id: my_topic.id, id: sponsored_post.id }
+        expect(response).to redirect_to my_topic
+      end
+    end
 
 end
