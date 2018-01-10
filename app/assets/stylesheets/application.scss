@@ -1,5 +1,12 @@
-
-
-
 @import "bootstrap-sprockets";
 @import "bootstrap";
+
+.avatar{
+  padding: 5px 0 5px 0;
+  align: right;
+  vertical-align: center;
+}
+
+.user-info{
+  padding-top: 7px;
+}
