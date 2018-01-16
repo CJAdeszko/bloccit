@@ -76,5 +76,16 @@ RSpec.describe Post, type: :model do
       end
     end
   end
-  
+
+
+      describe "#create_vote" do
+        it "up_votes the post after being created by a user" do
+          expect(post.up_votes).to eq(1)
+        end
+
+        it "associates the up_vote with the user who created the post" do
+          expect(post.votes.first.user).to eq(post.user)
+        end
+      end
+      
 end
