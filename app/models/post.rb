@@ -12,6 +12,8 @@ class Post < ApplicationRecord
   validates :topic, presence: true
   validates :user, presence: true
 
+  after_create :send_favorite_emails
+
     def up_votes
       votes.where(value: 1).count
     end
