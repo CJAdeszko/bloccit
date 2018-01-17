@@ -52,3 +52,6 @@ end
 
 # Used for encrypting passwords
 gem 'bcrypt'
+
+#Used to keep environment variables private
+gem 'figaro', '1.0'
