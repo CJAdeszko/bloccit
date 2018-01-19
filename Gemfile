@@ -48,6 +48,8 @@ group :development, :test do
   gem 'rspec-rails', '~> 3.0'
   gem 'rails-controller-testing'
   gem 'shoulda'
+  #Builds objects used for testing
+  gem 'factory_girl_rails', '~> 4.0'
 end
 
 # Used for encrypting passwords
