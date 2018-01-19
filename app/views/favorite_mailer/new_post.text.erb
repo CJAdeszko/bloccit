@@ -1,8 +1,7 @@
-New comment to "<%= @post.title %>"
+New post "<%= @post.title %>" was created 
  <%= "=" * (@post.title.length + 12) %>
 
- By: <%= @comment.user.name %>
+ You will receive email notifications when comments are added to your post.
 
- <%= @comment.body %>
 
- Visit online at: <%= topic_post_url(@post.topic, @post, anchor: "comment-#{@comment.id}") %>
+ Visit online at: <%= topic_post_url(@post.topic, @post) %>
