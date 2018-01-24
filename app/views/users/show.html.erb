@@ -19,20 +19,18 @@
   </div>
 </div>
 
-<% if has_posts(@user) %>
-<h2>Posts</h2>
-<%= render @user.posts %>
-<% end %>
 
-<% if has_comments(@user) %>
+<h2>Posts</h2>
+<%= has_posts(@user) %>
+
+
 <h2>Comments</h2>
-<%= render @user.comments %>
-<% end %>
+<%= has_comments(@user) %>
 
 <h2>Favorites</h2>
 <% @user.favorites.each do |favorite| %>
   <%= image_tag favorite.post.user.avatar_url(36) %>
-  <%= favorite.votes.count %>
-  <%= favorite.post.title %>
-  <%= favorite.comments.count %>
+  <%= favorite.post.votes.count %> Votes <br />
+  <%= favorite.post.title %> <br />
+  <%= favorite.post.comments.count %> Comments <br />
 <% end %>

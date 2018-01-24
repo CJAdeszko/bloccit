@@ -11,5 +11,10 @@ require 'rails_helper'
 #   end
 # end
 RSpec.describe UsersHelper, type: :helper do
-  pending "add some examples to (or delete) #{__FILE__}"
+  let(:user) {create(:user)}
+  describe "has_posts" do
+    it "renders a message if there are no posts" do
+      expect(has_posts(user)).to eq("#{user.name} has not submitted any posts yet.")
+    end
+  end
 end

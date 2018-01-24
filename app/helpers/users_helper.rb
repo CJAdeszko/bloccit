@@ -1,13 +1,17 @@
 module UsersHelper
   def has_posts(user)
-    if user.posts == 0
-      "{user.name} has not submitted any posts yet."
+    if user.posts.count == 0
+      "#{user.name} has not submitted any posts yet."
+    else
+      render user.posts
     end
   end
 
   def has_comments(user)
-    if user.comments == 0
-      "{user.name} has not submitted any comments yet."
+    if user.comments.count == 0
+      "#{user.name} has not submitted any comments yet."
+    else
+      render user.comments
     end
   end
 
